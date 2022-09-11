@@ -1,23 +1,30 @@
 // c = 4a - 3b + (ab)^e + 2i
 
-// ne znam sta je ovaj 2i ili sta vec treba značit onaj znak na kraju
-// ako je to jedinična matrica napravi foru istu kao kad postavljam nule u 'result array'
+/**
+ * MATRIX CALCULATOR FOR TRAINING PURPOSES
+ *
+ */
+
+/**
+ * ANTONIO
+ * ne znam sta je ovaj 2i ili sta vec treba značit onaj znak na kraju
+ * ako je to jedinična matrica, imaš funkciju koja ti daje jediničnu matricu
+ *
+ */
 
 const calcFunction = (arrayA: number[][], arrayB: number[][], e: number) => {
-  let result: Array<Array<number>> = new Array();
+  //   let result: Array<Array<number>> = new Array();
 
-  // da svaki clan result array-a ima vrijednost 0
-  for (let x = 0; x < arrayA.length; x++) {
-    result[x] = [];
-    for (let y = 0; y < arrayB[0].length; y++) {
-      result[x][y] = 0;
-    }
-  }
+  //   for (let x = 0; x < arrayA.length; x++) {
+  //     result[x] = [];
+  //     for (let y = 0; y < arrayB[0].length; y++) {
+  //       result[x][y] = 0;
+  //     }
+  //   }
 
   const getSameNumberArray = (sameNumber: number) => {
     let zeroArr: Array<Array<number>> = new Array();
 
-    // da svaki clan zeroArr array-a ima vrijednost 0
     for (let x = 0; x < arrayA.length; x++) {
       zeroArr[x] = [];
       for (let y = 0; y < arrayB[0].length; y++) {
@@ -28,7 +35,6 @@ const calcFunction = (arrayA: number[][], arrayB: number[][], e: number) => {
   };
 
   const multiply = (a: number[][], b: number[][]) => {
-    // množenje
     let multiplyRes = getSameNumberArray(0);
     for (let i = 0; i < a.length; i++) {
       for (let j = 0; j < b[0].length; j++) {
@@ -44,14 +50,13 @@ const calcFunction = (arrayA: number[][], arrayB: number[][], e: number) => {
   const onPower = (power: number) => {
     let axbArray = multiply(arrayA, arrayB);
     console.log(axbArray);
-    // let res;
     let res = getSameNumberArray(1);
     for (let x = 0; x < power - 1; x++) {
-      // power na -1 da ne napravi jedno množenje viska
+      // power -1 cuz we will have one step more than needed
       if (power === 1) res = axbArray;
       else if (power === 2) res = multiply(axbArray, axbArray);
       else if (power > 2) {
-        if (x === 0) res = multiply(axbArray, axbArray); // res na ^ 2
+        if (x === 0) res = multiply(axbArray, axbArray); // res on ^ 2
         else if (x > 0) res = multiply(res, axbArray);
         console.log(x);
       }
@@ -88,7 +93,10 @@ const calcFunction = (arrayA: number[][], arrayB: number[][], e: number) => {
     return res;
   };
 
-  // c = 4a - 3b + (ab)^e + 2i
+  /**
+   *
+   * @returns 4a - 3b + (ab)^e
+   */
   const main = () => {
     let fourA = multiplyByNumber(arrayA, 4);
     let threeB = multiplyByNumber(arrayB, 3);
